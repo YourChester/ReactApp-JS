@@ -1,42 +1,58 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 //botstrap
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
+//steled-components
 import styled from 'styled-components';
+//components
+import Header from './components/heade';
+import Menu from './components/menu';
+import Main from './components/main';
+
+
+const bg = process.env.PUBLIC_URL + '/img/bg.png'
+
+const HeaderWrapper = styled.header `
+  width: 100%;
+  height: 49px;
+  background-color: #242424;
+  opacity: 0.8;
+`
+
+const MenuWrapper = styled.div `
+  height: 89px;
+  padding: 20px;
+`
+
+const MainWrapper = styled.main `
+  height: 600px;
+  padding-top: 130px;
+  background: url(${bg}) no-repeat;
+  background-size: cover;
+`
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {firstname: null, lasttname: null};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    const {name, value} = event.target;
-    this.setState({ [name]: value});
-  }
-
-  handleSubmit(event) {
-    alert('Hello ' + this.state.lasttname + ' ' + this.state.firstname);
-    event.preventDefault();
-  }
-
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} name="firstname" onChange={this.handleChange} />
-          Surname:
-          <input type="text" value={this.state.value} name="lasttname" onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="App">
+        <HeaderWrapper>
+          <Grid>
+            <Header/>
+          </Grid>
+        </HeaderWrapper>
+        <MenuWrapper>
+          <Grid>
+            <Menu />
+          </Grid>
+        </MenuWrapper>
+        <MainWrapper>
+          <Grid>
+            <Main />
+          </Grid>
+        </MainWrapper>
+      </div>
     );
   }
 }
